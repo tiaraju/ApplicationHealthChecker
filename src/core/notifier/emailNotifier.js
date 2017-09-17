@@ -4,27 +4,26 @@ var mail = require('nodemailer');
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'noreply@gmail.com',
-    pass: 'stupidpass'
+    user: 'ahcnoreply@gmail.com',
+    pass: 'testpass'
   }
 });
 
 var mailOptions = {
-  from: 'noreply@gmail.com',
-  to: 'myfriend@yahoo.com',
-  subject: 'Sending Email using Node.js',
-  text: 'That was easy!'
+  from: 'ahcnoreply@gmail.com',
+  to: '',
+  subject: 'Your application is unhealthy!',
+  text: ''
 };
 
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
-
-var doNotify = function function_name (argument) {
-	// body... 
-	console.log("Notifying ");
+var doNotify = function function_name(dest) {
+	//validate(dest);
+	mailOptions.to = dest;
+	transporter.sendMail(mailOptions, function(error, info){
+	  if (error) {
+	    console.log(error);
+	  } else {
+	    console.log('Email sent: ' + info.response);
+	  }
+	});
 }
